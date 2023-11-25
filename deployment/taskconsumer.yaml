@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taskconsumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: taskconsumer
+  template:
+    metadata:
+      labels:
+        app: taskconsumer
+    spec:
+      containers:
+        - name: taskconsumer
+          image: taskconsumer:latest
+          imagePullPolicy: IfNotPresent
+
