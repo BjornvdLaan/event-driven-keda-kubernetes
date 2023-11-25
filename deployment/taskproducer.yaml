@@ -1,22 +1,13 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: Job
 metadata:
   name: taskproducer
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: taskproducer
   template:
-    metadata:
-      labels:
-        app: taskproducer
     spec:
       containers:
         - name: taskproducer
           image: taskproducer:latest
           imagePullPolicy: IfNotPresent
-          env:
-            - name: INTERVAL_MILLIS
-              value: "200"
-
+      restartPolicy: Never
+  backoffLimit: 3
